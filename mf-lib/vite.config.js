@@ -14,12 +14,12 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      // external: ["vue"],
-      // plugins: [
-      //   externalGlobals({
-      //     vue: "Vue"
-      //   })
-      // ]
+      // external: ['vue'],
+      // output: {
+      //   globals: {
+      //     vue: 'Vue'
+      //   }
+      // }
     },
     lib: {
       entry: path.resolve(__dirname, 'src/main.js'),

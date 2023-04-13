@@ -7,6 +7,7 @@
 <script setup>
 const router = useRouter();
 let timer = null;
+const config = useRuntimeConfig();
 
 function goToSecond() {
   navigateTo({
@@ -15,7 +16,7 @@ function goToSecond() {
 }
 
 useHead({
-  script: ["http://127.0.0.1:4173/mf-lib.umd.js"]
+  script: [`${config.libHost}/mf-lib.umd.js`]
 });
 
 onMounted(() => {
