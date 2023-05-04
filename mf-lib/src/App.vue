@@ -16,9 +16,11 @@ function addParams() {
 </script>
 
 <template>
-  <h1>Olá oia nois da lib!!!</h1>
-  <button @click="goToPage2">Vamos pra página 2</button>
-  <button @click="addParams">Fica aqui com parâmetro</button>
+  <div>
+    <h1>Olá oia nois da lib!!!</h1>
+    <button @click="goToPage2">Vamos pra página 2</button>
+    <button @click="addParams">Fica aqui com parâmetro</button>
+  </div>
 </template>
 
 <style scoped></style>

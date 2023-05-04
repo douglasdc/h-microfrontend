@@ -1,7 +1,6 @@
-import { createApp } from 'vue'
+import Vue from 'vue'
 import App from './App.vue'
 
-import './assets/main.css'
 import router from './myroute'
 
 if (process.env.NODE_ENV === 'development') {
@@ -9,7 +8,9 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 export function injectAt(elementId) {
-  createApp(App).mount(elementId)
+  new Vue({
+    render: (h) => h(App)
+  }).$mount(elementId)
 }
 
 export function init(config) {

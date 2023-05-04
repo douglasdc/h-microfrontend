@@ -2,10 +2,10 @@ import { fileURLToPath, URL } from 'node:url'
 import path from 'node:path'
 
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import vue from '@vitejs/plugin-vue2'
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [vue()],
   resolve: {
     alias: {
@@ -27,6 +27,6 @@ export default defineConfig({
     }
   },
   define: {
-    'process.env': process.env
+    'process.env.NODE_ENV': mode === 'production' ? '"production"' : '"development"'
   }
-})
+}))
