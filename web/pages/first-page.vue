@@ -5,6 +5,10 @@
 </template>
 
 <script setup>
+import Socket from "@huggydigital/socket";
+
+const MAX_RETRY = 10;
+const INTERVAL_TIME = 200;
 const router = useRouter();
 let timer = null;
 const config = useRuntimeConfig();
@@ -15,22 +19,50 @@ function goToSecond() {
   });
 }
 
+function initSocket() {
+  Socket.init({
+    agentToken: "AGENT_TOKEN",
+    companyId: 1,
+    host: {
+      prod: "WSS_PROD_HOST",
+      dev: "WSS_DEV_HOST"
+    },
+    environment: "prod"
+  });
+}
+
 useHead({
-  script: [`${config.libHost}/mf-lib.umd.js`]
+  script: [
+    {
+      key: "primus",
+      src: `https://cdn-flash.huggy.cloud/primus.min.js`,
+      type: "text/javascript",
+      tagPosition: "head",
+      defer: true,
+      onload: initSocket
+    },
+    { src: `${config.libHost}/mf-lib.umd.js`, tagPosition: "bodyClose" }
+  ]
 });
 
 onMounted(() => {
-  timer = setTimeout(() => {
+  timer = setInterval(() => {
     try {
       $MFLIB.init({
+        socket: Socket,
+        api: () => "ACCESS_TOKEN",
         router
       });
       $MFLIB.injectAt("#mflib");
 
-      clearTimeout(timer);
-    } catch {
-      console.log("deu pau?");
+      clearInterval(timer);
+    } catch (e) {
+      console.error(e);
     }
-  }, 200);
+  }, INTERVAL_TIME);
+
+  setInterval(() => {
+    clearInterval(timer);
+  }, INTERVAL_TIME * MAX_RETRY);
 });
 </script>

@@ -1,0 +1,7 @@
+# Para uso do projeto `mf-lib`
+
+É necessário adicionar um token que dê acesso aos pacotes privados do @huggydigital.
+
+Basta seguir o passo a passo: [Passo a passo](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry#installing-a-package)
+
+De resto, dar uma olhada no projeto de exemplo `web` e me procurar no @slack. xeru, :\*
