@@ -14,12 +14,21 @@ export function injectAt(elementId) {
 }
 
 export function init(config) {
-  console.log('Config: ', config)
+  if (!config.socket) {
+    throw new Error(
+      'Necessário passar a instancia do socket. Para mais inforamções ler o Readme do projeto'
+    )
+  } else if (!config.api) {
+    throw Error(
+      'Necessário passar o access token da API. Para mais inforamções ler o Readme do projeto'
+    )
+  } else if (!config.router) {
+    throw Error(
+      'Necessário passar o objeto de rota em. Para mais inforamções ler o Readme do projeto'
+    )
+  }
 
   if (config.router) {
     router.setInstance(config.router)
-    console.log(config.router)
-  } else {
-    console.log('tinha nada de route aqui não')
   }
 }
