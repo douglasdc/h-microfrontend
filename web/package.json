@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
+    "pre:install": "npm config set //npm.pkg.github.com/:_authToken=$GH_PERSONAL_ACCESS_TOKEN",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
